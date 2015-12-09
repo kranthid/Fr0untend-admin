@@ -1,0 +1,17 @@
+{
+  "name": "Admin_app",
+  "version": "0.0.0",
+  "dependencies": {
+    "express": "~3.4.8",
+    "express-hbs": "~0.7.9",
+    "mongoose": "~3.8.7",
+    "passport": "~0.1.17",
+    "passport-facebook": "~1.0.1",
+    "passport-google": "~0.3.0",
+    "passport-local":"~1",
+    "underscore":"*"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4"
+  }
+}
