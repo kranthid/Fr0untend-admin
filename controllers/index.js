@@ -1,6 +1,7 @@
 var Recipe = require('../models/recipe');
 var User = require('../models/user');
 var Account = require('../models/accounts');
+var Category = require('../models/categories');
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
@@ -204,6 +205,79 @@ exports.register = function(req,res){
 			})
 		}
 	})
+}
+exports.createCategory = function(req,res){
+	  var categoryItem = new Category();
+	  categoryItem.catid = req.body.catid;
+	  categoryItem.title = req.body.title;
+	  categoryItem.save(function(err){
+	  	if(err){
+	  			res.send("Error while saving data ",err);
+	  		}
+	  	else{
+	  		res.status(200);
+	  		res.json({message:"Category item was added successfully"});
+	  	}
+	  })
+}
+exports.updateCategory = function(req,res){
+	var id = req.params.id;
+	console.log("Id is >>>",id);
+	var update_object = {
+		"catid": req.body.catid,
+		"title": req.body.title
+	};
+	console.log("updateing data >>>",update_object);
+	Category.update({_id:id},update_object,{upsert:true},function(err,data){
+		console.log("Data is >>>",data);
+		if(err){
+  			res.status(500);
+  			res.send("Error while deleting data ",err);
+  		}
+	  	else{
+	  		res.status(200);
+	  		res.json({updated_item:data});
+	  	}		
+	})
+}
+exports.deleteCategory = function(req,res){
+	var Id = req.params.id;
+	Category.remove({_id:Id},function(err,data){
+		console.log("Data is >>>",data);
+		if(err){
+  			res.status(500);
+  			res.send("Error while deleting data ",err);
+  		}
+	  	else{
+	  		res.status(200);
+	  		res.json({message:"Deletion was successful"});
+	  	}
+	});
+}
+exports.getListOfCategories = function(req,res){
+	Category.find({},function(err,data){
+	  	if(err){
+	  			res.status(500);
+	  			res.send("Error while getting data ",err);
+	  		}
+	  	else{
+	  		res.status(200);
+	  		res.json({all_categories:data});
+	  	}
+	});
+}
+exports.getCategoryById = function(req,res){
+	var id = req.params.id;
+	  Category.findById(id,function(err,data){
+	  	if(err){
+	  			res.status(500);
+	  			res.send("Error while getting data ",err);
+	  		}
+	  	else{
+	  		res.status(200);
+	  		res.json({category:data});
+	  	}
+	  });
 }
 passport.use(new LocalStrategy(function(username, password, done) {
   console.log("username is >>>>>>",username);

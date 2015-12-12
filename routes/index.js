@@ -11,13 +11,17 @@ module.exports = function (app) {
   app.get('/user/:id',controllers.getUserById);
   app.put('/user/:id',controllers.updateUserById);
   app.delete('/user/:id',controllers.removeUserById);
+  app.post('/create/category',controllers.createCategory);
+  app.put('/update/category/:id',controllers.updateCategory);
+  app.delete('/delete/category/:id',controllers.deleteCategory);
+  app.get('/categories/all',controllers.getListOfCategories);
+  app.get('/category/:id',controllers.getCategoryById);
   app.get('fail',function(req,res){
   	res.send({username:null,auth_status:false});
   })
   //Login and signup
  	app.post('/register',controllers.register);
 	app.post('/login', passport.authenticate('local', { failureRedirect: '/fail'}),function(req, res) {
-		console.log("____________________",req.user)
 		if(req.user.length>0){
 			res.send({username:req.user[0].short_name,auth_status:true})	
 		}else{
