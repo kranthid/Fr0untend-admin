@@ -1,6 +1,7 @@
 var controllers = require('../controllers');
 var passport = require('passport');
-
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 module.exports = function (app) {
   app.post('/create/item', controllers.createRecipe);
   app.get('/item/:id',controllers.getRecipeById);
@@ -16,6 +17,7 @@ module.exports = function (app) {
   app.delete('/delete/category/:id',controllers.deleteCategory);
   app.get('/categories/all',controllers.getListOfCategories);
   app.get('/category/:id',controllers.getCategoryById);
+  app.post('/image/upload', upload.single('avatar'),controllers.recipeImageUpload);
   app.get('fail',function(req,res){
   	res.send({username:null,auth_status:false});
   })

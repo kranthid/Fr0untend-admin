@@ -7,6 +7,8 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var _ = require('underscore');
+var fs = require('fs');
+
 
 passport.serializeUser(function(user, done) {
   console.log("checking serializeUser >>",user)
@@ -278,6 +280,36 @@ exports.getCategoryById = function(req,res){
 	  		res.json({category:data});
 	  	}
 	  });
+}
+exports.recipeImageUpload = function(req,res){
+	console.log("uploading file >>>>>>");
+	console.log("file is >>>",req.file);
+	if(req.file.size < 500000){
+		if(req.file.mimetype == 'image/jpeg' ||req.file.mimetype == 'image/png' || req.file.mimetype == 'image/jpg' ){
+			//res.send({message:"File upload was done",path:req.file.path});
+			//var serverPath = req.file.path+'\\'+req.file.originalname;
+			var serverPath = req.file.path.split("\\")[0]+'\\'+req.file.originalname;
+			console.log("+++++++++++",serverPath);
+/*			fs.readFile(req.file.path, function (err, data) {
+			  if (err) throw err;
+			  // data will contain your file contents
+			  	console.log(data)  
+			  	res.send(data);   
+			});*/
+			fs.rename(req.file.path,serverPath,function(err,data){
+				if(err){
+					res.send("Some error occured>>",err);
+				}else{
+					res.send({path:serverPath});
+				}
+			})
+		}else{
+			res.send({message:"File format not supported"})
+		}
+
+	}else{
+		res.send({message:"File size exceeded"});
+	}
 }
 passport.use(new LocalStrategy(function(username, password, done) {
   console.log("username is >>>>>>",username);

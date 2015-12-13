@@ -11,6 +11,7 @@ var express  = require('express'),
 var passport = require('passport');
 
 
+
 mongoose.connect(config.database.url);
 mongoose.connection.on('error', function (error) {
   console.log('mongodb connection error >>'+error);
@@ -44,7 +45,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.session({ secret: 'your secret code' }));
 app.use(app.router);
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/uploads')));
 app.use(function (req, res) {
   //res.status(404).render('404', {title: 'Not Found :('});
     res.send("Not found")
