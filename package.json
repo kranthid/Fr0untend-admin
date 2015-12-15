@@ -10,7 +10,8 @@
     "passport-google": "~0.3.0",
     "passport-local":"~1",
     "underscore":"*",
-    "multer":"*"
+    "multer":"*",
+    "ejs":"*"
   },
   "devDependencies": {
     "grunt": "~0.4.4"

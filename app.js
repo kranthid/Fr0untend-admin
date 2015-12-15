@@ -31,9 +31,10 @@ hbs.registerHelper('ifvalue', function (conditional, options) {
  * Express configuration.
  */
 app.set('port', config.server.port);
-app.engine('hbs', hbs.express3());
-//app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+//app.engine('hbs', hbs.express3());
+app.use("/public",express.static(path.join(__dirname, 'public')));
+app.set('views', __dirname + '\\public\\views');
+app.engine('html', require('ejs').renderFile);
 app.use(express.compress());
 app.use(express.favicon());
 app.use(express.logger('dev'));
@@ -45,7 +46,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.session({ secret: 'your secret code' }));
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '/uploads')));
+
 app.use(function (req, res) {
   //res.status(404).render('404', {title: 'Not Found :('});
     res.send("Not found")
@@ -54,7 +55,10 @@ app.use(function (req, res) {
 if (app.get('env') === 'development') {
   app.use(express.errorHandler());
 }
-
+app.get('/',function(req,res){
+  res.render('index.ejs');
+  //res.send(">>>>>>>")
+})
 routes(app);
 
 app.listen(app.get('port'), function () {

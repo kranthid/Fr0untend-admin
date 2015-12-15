@@ -288,7 +288,9 @@ exports.recipeImageUpload = function(req,res){
 		if(req.file.mimetype == 'image/jpeg' ||req.file.mimetype == 'image/png' || req.file.mimetype == 'image/jpg' ){
 			//res.send({message:"File upload was done",path:req.file.path});
 			//var serverPath = req.file.path+'\\'+req.file.originalname;
-			var serverPath = req.file.path.split("\\")[0]+'\\'+req.file.originalname;
+			console.log("File path >>",req.file.path)
+			console.log("File originalname >>",req.file.originalname)
+			var serverPath = 'public'+'\\'+'uploads'+'\\'+req.file.originalname;
 			console.log("+++++++++++",serverPath);
 /*			fs.readFile(req.file.path, function (err, data) {
 			  if (err) throw err;

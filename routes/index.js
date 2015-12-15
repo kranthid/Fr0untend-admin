@@ -1,7 +1,7 @@
 var controllers = require('../controllers');
 var passport = require('passport');
 var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var upload = multer({ dest: 'public/uploads/' })
 module.exports = function (app) {
   app.post('/create/item', controllers.createRecipe);
   app.get('/item/:id',controllers.getRecipeById);
