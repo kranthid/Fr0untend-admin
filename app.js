@@ -33,7 +33,7 @@ hbs.registerHelper('ifvalue', function (conditional, options) {
 app.set('port', config.server.port);
 //app.engine('hbs', hbs.express3());
 app.use("/public",express.static(path.join(__dirname, 'public')));
-app.set('views', __dirname + '\\public\\views');
+app.set('views', __dirname + '\\public');
 app.engine('html', require('ejs').renderFile);
 app.use(express.compress());
 app.use(express.favicon());
@@ -57,7 +57,17 @@ if (app.get('env') === 'development') {
 }
 app.get('/',function(req,res){
   res.render('index.ejs');
-  //res.send(">>>>>>>")
+})
+app.get('/status',function(req,res){
+  res.render('account.ejs');
+})
+app.post('/admin/login',function(req,res){
+  console.log("body is >>>>",req.body)
+  if(req.body.email == 'bglr' && req.body.pass == 'secret'){
+    res.send({message:"your are successfully logged in",status:true});
+  }else{
+    res.send({message:"You are not authorized",status:false});
+  }
 })
 routes(app);
 

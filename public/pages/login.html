@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="foodApp">
+<head>
+    <meta charset="utf-8">
+    <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
+    <title>Food Delivery App</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700);
+body {
+    background-color: #f9f9f9 !important;
+    font-family: 'Open Sans', sans-serif!important;
+    font-size:11px;
+}
+.well{
+    background-color:#fff!important;
+    border-radius:0!important;
+    border:black solid 1px;
+}
+
+.well.login-box {
+    /*width:400px; */
+    border:#d1d1d1 solid 1px;
+    margin:0 auto;
+    margin-top:30px;
+}
+.well.login-box legend {
+  font-size:26px;
+  text-align:center;
+  font-weight:300;
+}
+.well.login-box label {
+  font-weight:300;
+  font-size:13px;
+  
+}
+.well.login-box input[type="text"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+}
+
+.well.welcome-text{
+    font-size:21px;
+}
+
+/* Notifications */
+
+.notification{
+    position:fixed;
+    top: 20px;
+    right:0;
+    background-color:#FF4136;
+    padding: 20px;
+    color: #fff;
+    font-size:21px;
+    display:none;
+}
+.notification-success{
+  background-color:#3D9970;
+}
+
+.notification-show{
+    display:block!important;
+}
+
+/*Loged in*/
+.btn-default {
+    color: #333;
+    background-color: #f9f9f9;
+    border-color: #ccc;
+    border: 1px solid;
+    text-align: center;
+    cursor: pointer;
+    color: #5e5e5e;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #f9f9f9)), #f9f9f9;
+    background: -moz-linear-gradient(#fefefe, #f9f9f9), #f9f9f9;
+    background: -webkit-linear-gradient(#fefefe, #f9f9f9), #f9f9f9;
+    background: linear-gradient(#fefefe, #f9f9f9), #f9f9f9;
+    border-color: #c3c3c3 #c3c3c3 #bebebe;
+    -moz-box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0, rgba(255, 255, 255, 0.1) 0 1px 0 0 inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0, rgba(255, 255, 255, 0.1) 0 1px 0 0 inset;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 1px 0, rgba(255, 255, 255, 0.1) 0 1px 0 0 inset;
+}
+    </style>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" ng-controller = "loginController">
+
+<ng-view>
+    <div class="row">
+        <div class='col-md-3'></div>
+        <div class="col-md-6">
+            <div class="login-box well">
+                    <form action="">
+                        <legend>Sign In</legend>
+                        <div class="form-group">
+                            <label for="username-email">E-mail or Username</label>
+                            <input value='' id="username-email" ng-model="user.email" placeholder="E-mail or Username" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input id="password" value='' ng-model="user.pass" placeholder="Password" type="text" class="form-control" />
+                        </div>
+                        <div class="input-group">
+                          <div class="checkbox">
+                            <label>
+                              <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Login" ng-click="submitForm(user)" />
+                        </div>
+                        <!--<span class='text-center'><a href="/resetting/request" class="text-sm">Forgot Password?</a></span>
+                        <div class="form-group">
+                            <p class="text-center m-t-xs text-sm">Do not have an account?</p> 
+                            <a href="/register/" class="btn btn-default btn-block m-t-md">Create an account</a>
+                        </div>-->
+                    </form>
+                    +++++++{{loginResult}}
+            </div>
+        </div>
+        <div class='col-md-3'></div>
+    </div>
+ <ng-view>   
+</div>
+
+<script type="text/javascript" src="public/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="public/lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="public/lib/angular-route.js"></script>
+<script type="text/javascript" src="public/js/app.js"></script>
+<script type="text/javascript" src="public/js/controllers.js"></script>
+<script type="text/javascript" src="public/js/services.js"></script>
+<script type="text/javascript">
+
+</script>
+</body>
+    
+</html>
