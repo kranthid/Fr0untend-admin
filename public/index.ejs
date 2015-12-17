@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="foodApp">
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Login</title>
+    <title>Food Delivery App</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -91,8 +91,9 @@ body {
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+<ng-view><ng-view>
 <div class="container">
-    <div class="row">
+    <div class="row" ng-controller = "loginController">
         <div class='col-md-3'></div>
         <div class="col-md-6">
             <div class="login-box well">
@@ -100,11 +101,11 @@ body {
                         <legend>Sign In</legend>
                         <div class="form-group">
                             <label for="username-email">E-mail or Username</label>
-                            <input value='' id="username-email" placeholder="E-mail or Username" type="text" class="form-control" />
+                            <input value='' id="username-email" ng-model="user.email" placeholder="E-mail or Username" type="text" class="form-control" />
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input id="password" value='' placeholder="Password" type="text" class="form-control" />
+                            <input id="password" value='' ng-model="user.pass" placeholder="Password" type="text" class="form-control" />
                         </div>
                         <div class="input-group">
                           <div class="checkbox">
@@ -114,21 +115,27 @@ body {
                           </div>
                         </div>
                         <div class="form-group">
-                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Login" />
+                            <input type="submit" class="btn btn-default btn-login-submit btn-block m-t-md" value="Login" ng-click="submitForm(user)" />
                         </div>
-                        <!--<span class='text-center'><a href="/resetting/request" class="text-sm">Forgot Password?</a></span>
-                        <div class="form-group">
-                            <p class="text-center m-t-xs text-sm">Do not have an account?</p> 
-                            <a href="/register/" class="btn btn-default btn-block m-t-md">Create an account</a>
-                        </div>-->
                     </form>
+                    +++++++{{loginResult}}    
             </div>
         </div>
-        <div class='col-md-3'></div>
-    </div>
+        <div class='col-md-3'>
+        </div>
+    </div>  
 </div>
+
+<script type="text/javascript" src="public/lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="public/lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="public/lib/angular-route.js"></script>
+<script type="text/javascript" src="public/js/app.js"></script>
+<script type="text/javascript" src="public/js/controllers.js"></script>
+<script type="text/javascript" src="public/js/services.js"></script>
 <script type="text/javascript">
 
 </script>
 </body>
+    
 </html>
