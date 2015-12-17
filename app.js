@@ -33,7 +33,7 @@ hbs.registerHelper('ifvalue', function (conditional, options) {
 app.set('port', config.server.port);
 //app.engine('hbs', hbs.express3());
 app.use("/public",express.static(path.join(__dirname, 'public')));
-app.set('views', __dirname + '\\public\\views');
+app.set('views', __dirname + '/public/views');
 app.engine('html', require('ejs').renderFile);
 app.use(express.compress());
 app.use(express.favicon());
